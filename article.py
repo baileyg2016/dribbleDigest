@@ -8,4 +8,4 @@ class Article:
     self.date = date
 
   def __str__(self):
-    return f'Title: {self.title}\nAuthor: {self.author}\nLink: {self.link}\Content: {self.content}\n'
+    return f'Title: {self.title}\nAuthor: {self.author}\nLink: {self.link}\nContent: {self.content}\n'

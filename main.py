@@ -49,12 +49,34 @@ def get_espn_data(sport: FavoriteSports):
   print(len(descriptions))
   return articles
 
+# sample article: https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules
+def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules'):
+  headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+  }
+  response = requests.get(url, headers=headers)
+  soup = BeautifulSoup(response.text, 'html.parser')
+
+  article_tag = soup.find('div', { 'class': 'main-content'})
+  title = article_tag.find('header').find('h1').text
+
+  article_body = article_tag.find('div', { 'class': 'article-body'})
+  article_text = ''.join([p.get_text() for p in article_body.find_all('p')])
+  
+  meta_data = article_body.find('div', { 'class': 'author'}).text.split('ESPN')
+  # meta_data looks like this: ['Tim Bontemps, ', 'Aug 22, 2023, 07:27 PM ET']
+  author = meta_data[0]
+  date = ','.join(meta_data[1].split(",")[0:2]).strip()
+  
+  a = Article(title, author, url, article_text, '', date)
+  print(a)
+
 # used to get the bleacher report for rumors
 # nba: https://bleacherreport.com/nba-rumors?from=sub
 # nfl: https://bleacherreport.com/nfl-rumors?from=main
 # nhl: https://bleacherreport.com/nhl-rumors?from=main
 # mlb: https://bleacherreport.com/mlb-rumors?from=main
-def scrape_bleacher_report(sport, css_class):
+def scrape_bleacher_report(sport, css_class = 'articleContent'):
   url = f'https://bleacherreport.com/{sport}-rumors?from=sub'
   response = requests.get(url)
   soup = BeautifulSoup(response.text, 'html.parser')
@@ -97,4 +119,5 @@ def get_bleacher_report_article(article_url):
 
 # get_espn_data("http://site.api.espn.com/apis/site/v2/sports/basketball/nba/news")
 # scrape_bleacher_report('nba', 'articleContent')
-get_bleacher_report_article('https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc')
+# get_bleacher_report_article('https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc')
+scrape_espn_article()
