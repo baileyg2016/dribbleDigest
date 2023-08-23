@@ -50,7 +50,7 @@ def get_espn_data(sport: FavoriteSports):
   return articles
 
 # sample article: https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules
-def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules'):
+def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules') -> Article:
   headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
   }
@@ -68,15 +68,14 @@ def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa
   author = meta_data[0]
   date = ','.join(meta_data[1].split(",")[0:2]).strip()
   
-  a = Article(title, author, url, article_text, '', date)
-  print(a)
+  return Article(title, author, url, article_text, '', date)
 
 # used to get the bleacher report for rumors
 # nba: https://bleacherreport.com/nba-rumors?from=sub
 # nfl: https://bleacherreport.com/nfl-rumors?from=main
 # nhl: https://bleacherreport.com/nhl-rumors?from=main
 # mlb: https://bleacherreport.com/mlb-rumors?from=main
-def scrape_bleacher_report(sport, css_class = 'articleContent'):
+def scrape_bleacher_report(sport, css_class = 'articleContent') -> Rumor:
   url = f'https://bleacherreport.com/{sport}-rumors?from=sub'
   response = requests.get(url)
   soup = BeautifulSoup(response.text, 'html.parser')
@@ -94,7 +93,7 @@ def scrape_bleacher_report(sport, css_class = 'articleContent'):
   return rumors
 
 # sample url: https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc
-def get_bleacher_report_article(article_url):
+def get_bleacher_report_article(article_url) -> Article:
   response = requests.get(article_url)
   soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -115,7 +114,7 @@ def get_bleacher_report_article(article_url):
   # find date
   date = soup.find('span', {'class': 'date' }).text
 
-  print(Article(title, author, article_url, article_text, image_src, date))
+  return Article(title, author, article_url, article_text, image_src, date)
 
 # get_espn_data("http://site.api.espn.com/apis/site/v2/sports/basketball/nba/news")
 # scrape_bleacher_report('nba', 'articleContent')
