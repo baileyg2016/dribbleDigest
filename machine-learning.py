@@ -25,6 +25,7 @@ def extract_array_from_string(string: str):
 
 
 def respell_request(inputs, spellId: str, spellVersionId: str):
+  print(inputs)
   resp = requests.post(
     "https://api.respell.ai/v1/run",
     headers={
@@ -59,7 +60,7 @@ def find_best_articles(articles_list: List[Article] = []):
   respell_resp = respell_request(
     inputs,
     spellId="1Lkc-tCYn5KSd97eGrlhZ",
-    spellVersionId="lkL0hGfE7IZARcWxPorlg"
+    spellVersionId="wtbpZpCKNa-RDOExL2-r6"
   )
   print(respell_resp)
   print(respell_resp['outputs']['output'])
