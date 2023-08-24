@@ -6,7 +6,9 @@ from rumor import Rumor
 from article import Article
 from dotenv import load_dotenv
 from bets import Bet
+from typing import List
 from datetime import datetime
+from pytz import timezone
 
 load_dotenv()
 
@@ -124,7 +126,7 @@ def get_bleacher_report_article(article_url) -> Article:
 
   return Article(title, author, article_url, article_text, image_src, date)
 
-def get_betting_lines(sport: Sport):
+def get_betting_lines(sport: Sport) -> List[Bet]:
   url = f'https://www.actionnetwork.com/{sport.value}/public-betting'
   headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
@@ -137,14 +139,22 @@ def get_betting_lines(sport: Sport):
   rows = public_betting_table.find_all('tr')[1:]
   bets = []
   for r in rows:
-    # print(r)
-    # print(r.find('div', class_='public-betting__game-info'))
-    game_date = r.find('div', class_='public-betting__game-status').text
-    # print(game_date)
+    # Extract time from div
+    href = r.find('a')['href']
+    date_str = href.split('/')[-2]
+    time_str = r.find('div', class_='public-betting__game-status').text.strip()
+    date_str = ' '.join(date_str.split('odds-')[1].split('-'))
+
+    # Combine date and time into a single datetime object
+    date_time_str = f'{date_str} {time_str}'
+    
+    date = datetime.strptime(date_time_str, "%B %d %Y %I:%M %p")
+    date = date.replace(tzinfo=timezone('UTC'))
+    game_date = date.astimezone(timezone('US/Pacific'))
+
     away_team = r.find_all('div', class_='game-info__team--desktop')[0].span.text
-    # print(away_team)
     home_team = r.find_all('div', class_='game-info__team--desktop')[1].span.text
-    # print(home_team)
+
     away_open = float(r.find_all('div', class_='public-betting__open-cell')[0].text)
     home_open = float(r.find_all('div', class_='public-betting__open-cell')[1].text)
     # print('open', r.find('span', class_='css-1qynun2 ena22472').text)
@@ -168,7 +178,8 @@ def get_betting_lines(sport: Sport):
     b = Bet(home_team, away_team, game_date, away_open, home_open, best_odds, away_team_bet_odds, home_team_bet_odds, away_team_bets_percentage, home_team_bets_percentage)
     # print(b)
     bets.append(b)
-  print(bets)
+  
+  return bets
 
 
 
