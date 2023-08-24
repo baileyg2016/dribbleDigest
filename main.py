@@ -139,44 +139,47 @@ def get_betting_lines(sport: Sport) -> List[Bet]:
   rows = public_betting_table.find_all('tr')[1:]
   bets = []
   for r in rows:
+    if len(r.find_all('div', class_='game-info__team--desktop')) == 0:
+      continue
     # Extract time from div
-    href = r.find('a')['href']
-    date_str = href.split('/')[-2]
-    time_str = r.find('div', class_='public-betting__game-status').text.strip()
-    date_str = ' '.join(date_str.split('odds-')[1].split('-'))
-
-    # Combine date and time into a single datetime object
-    date_time_str = f'{date_str} {time_str}'
-    
-    date = datetime.strptime(date_time_str, "%B %d %Y %I:%M %p")
-    date = date.replace(tzinfo=timezone('UTC'))
-    game_date = date.astimezone(timezone('US/Pacific'))
+    game_date = None
+    link = r.find('a')
+    if link and link.get('href'):
+      href = r.find('a')['href']
+      date_str = href.split('/')[-2]
+      time_str = r.find('div', class_='public-betting__game-status').text.strip()
+      date_str = ' '.join(date_str.split('odds-')[1].split('-'))
+      date_time_str = f'{date_str} {time_str}'
+      if date_time_str.find('Final') != -1:
+        game_date = 'Final'
+      elif date_time_str.find('Postponed') != -1 or date_time_str.find('TOP') != -1 or date_time_str.find('BOT') != -1:
+        game_date = 'Playing'
+      else:
+        try:
+          # Combine date and time into a single datetime object
+          date = datetime.strptime(date_time_str, "%B %d %Y %I:%M %p")
+          date = date.replace(tzinfo=timezone('UTC'))
+          game_date = date.astimezone(timezone('US/Pacific'))
+        except Exception:
+          game_date = ''
 
     away_team = r.find_all('div', class_='game-info__team--desktop')[0].span.text
     home_team = r.find_all('div', class_='game-info__team--desktop')[1].span.text
 
     away_open = float(r.find_all('div', class_='public-betting__open-cell')[0].text)
     home_open = float(r.find_all('div', class_='public-betting__open-cell')[1].text)
-    # print('open', r.find('span', class_='css-1qynun2 ena22472').text)
     best_odds = 0.0# float(r.find('span', class_='css-1qynun2 ena22472').text)
-
-    # book-cell__odds
 
     away_team_bet_odds = r.find_all('div', class_='book-cell__odds')[0].span.text.strip('%')
     home_team_bet_odds = r.find_all('div', class_='book-cell__odds')[1].span.text.strip('%')
 
-    # print(r.find_all('span', class_='highlight-text__children'))
-    # print()
     away_team_bets_percentage = None
     home_team_bets_percentage = None
     if len(r.find_all('span', class_='highlight-text__children')) > 0:
       away_team_bets_percentage = r.find_all('span', class_='highlight-text__children')[0].text
       home_team_bets_percentage = r.find_all('span', class_='highlight-text__children')[1].text
 
-    # print(home_team_bets_percentage)
-    # print(away_team_bets_percentage)
     b = Bet(home_team, away_team, game_date, away_open, home_open, best_odds, away_team_bet_odds, home_team_bet_odds, away_team_bets_percentage, home_team_bets_percentage)
-    # print(b)
     bets.append(b)
   
   return bets
@@ -188,6 +191,6 @@ def get_betting_lines(sport: Sport) -> List[Bet]:
 # get_bleacher_report_article('https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc')
 # scrape_espn_article()
 
-get_betting_lines(Sport.NBA)
+get_betting_lines(Sport.NFL)
 # the ringer
 # action network
