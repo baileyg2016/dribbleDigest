@@ -10,6 +10,8 @@ from typing import List
 from datetime import datetime
 from pytz import timezone
 
+from helpers import dict_to_article
+
 load_dotenv()
 
 
@@ -34,30 +36,16 @@ SPORT_TO_NEWS_LINK = {
   FavoriteSports.SOCCER: 'http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/news',
 }
 
-def get_espn_endpoint(sport: FavoriteSports):
-  id = ''
-  if sport == FavoriteSports.NBA:
-    id = 'basketball/nba'
-  elif sport == FavoriteSports.NFL:
-    id = 'football/nfl'
-  elif sport == FavoriteSports.MLB:
-    id = 'baseball/mlb'
-  elif sport == FavoriteSports.NHL:
-    id = 'hockey/nhl'
-  elif sport == FavoriteSports.SOCCER:
-    id = 'soccer/eng.1'
+def get_espn_endpoint(sport: Sport):
+  switcher = {
+    Sport.NBA.value: 'basketball/nba',
+    Sport.NFL.value: 'football/nfl',
+    Sport.MLB.value: 'baseball/mlb',
+    Sport.NHL.value: 'hockey/nhl',
+    # Sport.SOCCER.value: 'soccer/eng.1',
+  }
 
-  return f'http://site.api.espn.com/apis/site/v2/sports/basketball/{id}/scoreboard'
-
-def get_espn_data(sport: FavoriteSports):
-  espn_endpoint = get_espn_endpoint(sport)
-  response = requests.get(espn_endpoint)
-  data = response.json()
-  articles = np.array(data['articles'])
-  descriptions = [article['description'] for article in articles]
-  print(descriptions)
-  print(len(descriptions))
-  return articles
+  return f'http://site.api.espn.com/apis/site/v2/sports/{switcher.get(sport)}/news'
 
 # sample article: https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules
 def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa-filing-grievance-says-james-harden-violate-rules') -> Article:
@@ -80,12 +68,32 @@ def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa
   
   return Article(title, author, url, article_text, '', date)
 
+def get_espn_article_data(url) -> str:
+  headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+  }
+  response = requests.get(url, headers=headers)
+  soup = BeautifulSoup(response.text, 'html.parser')
+  article_tag = soup.find('div', { 'class': 'main-content'})
+  article_body = article_tag.find('div', { 'class': 'article-body'})
+  article_text = ''.join([p.get_text() for p in article_body.find_all('p')])
+
+  return article_text
+
+def get_espn_data(sport: FavoriteSports):
+  espn_endpoint = get_espn_endpoint(sport)
+  response = requests.get(espn_endpoint)
+  data = response.json()
+  articles = np.array(data['articles'])
+  return [dict_to_article(data, get_espn_article_data) for data in articles]
+
 # used to get the bleacher report for rumors
 # nba: https://bleacherreport.com/nba-rumors?from=sub
 # nfl: https://bleacherreport.com/nfl-rumors?from=main
 # nhl: https://bleacherreport.com/nhl-rumors?from=main
 # mlb: https://bleacherreport.com/mlb-rumors?from=main
-def scrape_bleacher_report(sport, css_class = 'articleContent') -> Rumor:
+# DONE
+def scrape_bleacher_report(sport, css_class = 'articleContent') -> List[Rumor]:
   url = f'https://bleacherreport.com/{sport}-rumors?from=sub'
   response = requests.get(url)
   soup = BeautifulSoup(response.text, 'html.parser')

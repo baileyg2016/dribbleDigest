@@ -1,11 +1,13 @@
+from dataclasses import dataclass
+
+@dataclass
 class Article:
-  def __init__(self, title, author, link, content, image, date):
-    self.title = title
-    self.author = author
-    self.link = link
-    self.content = content
-    self.image = image
-    self.date = date
+  title: str
+  author: str
+  link: str
+  content: str
+  image: str
+  date: str
 
   def __str__(self):
     return f'Title: {self.title}\nAuthor: {self.author}\nLink: {self.link}\nContent: {self.content}\n'
