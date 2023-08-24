@@ -8,8 +8,7 @@ import os
 load_dotenv()
 
 def send_digest(email):
-    context = ssl.create_default_context()
-    server = smtplib.SMTP_SSL(host='smtp.gmail.com', post=465, context=context)
+    server = smtplib.SMTP_SSL(host='smtp.gmail.com', port=465)
     server.login(user=os.getenv('SMTP_USER'),password=os.getenv('SMTP_PASSWORD'))
 
     html = """\
