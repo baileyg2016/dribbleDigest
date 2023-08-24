@@ -5,6 +5,8 @@ import numpy as np
 from rumor import Rumor
 from article import Article
 from dotenv import load_dotenv
+from bets import Bet
+from datetime import datetime
 
 load_dotenv()
 
@@ -15,6 +17,12 @@ class FavoriteSports(Enum):
   MLB = "MLB Baseball"
   SOCCER = "EPL Soccer"
   NHL = 'NHL Hockey'
+
+class Sport(Enum):
+  NFL = 'nfl'
+  NBA = 'nba'
+  MLB = 'mlb'
+  NHL = 'nhl'
 
 SPORT_TO_NEWS_LINK = {
   FavoriteSports.NBA: 'http://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
@@ -116,7 +124,59 @@ def get_bleacher_report_article(article_url) -> Article:
 
   return Article(title, author, article_url, article_text, image_src, date)
 
+def get_betting_lines(sport: Sport):
+  url = f'https://www.actionnetwork.com/{sport.value}/public-betting'
+  headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+  }
+  response = requests.get(url, headers=headers)
+  soup = BeautifulSoup(response.text, 'html.parser')
+
+  # find the table
+  public_betting_table = soup.find('div', {'class': 'public-betting__table-container'})
+  rows = public_betting_table.find_all('tr')[1:]
+  bets = []
+  for r in rows:
+    # print(r)
+    # print(r.find('div', class_='public-betting__game-info'))
+    game_date = r.find('div', class_='public-betting__game-status').text
+    # print(game_date)
+    away_team = r.find_all('div', class_='game-info__team--desktop')[0].span.text
+    # print(away_team)
+    home_team = r.find_all('div', class_='game-info__team--desktop')[1].span.text
+    # print(home_team)
+    away_open = float(r.find_all('div', class_='public-betting__open-cell')[0].text)
+    home_open = float(r.find_all('div', class_='public-betting__open-cell')[1].text)
+    # print('open', r.find('span', class_='css-1qynun2 ena22472').text)
+    best_odds = 0.0# float(r.find('span', class_='css-1qynun2 ena22472').text)
+
+    # book-cell__odds
+
+    away_team_bet_odds = r.find_all('div', class_='book-cell__odds')[0].span.text.strip('%')
+    home_team_bet_odds = r.find_all('div', class_='book-cell__odds')[1].span.text.strip('%')
+
+    # print(r.find_all('span', class_='highlight-text__children'))
+    # print()
+    away_team_bets_percentage = None
+    home_team_bets_percentage = None
+    if len(r.find_all('span', class_='highlight-text__children')) > 0:
+      away_team_bets_percentage = r.find_all('span', class_='highlight-text__children')[0].text
+      home_team_bets_percentage = r.find_all('span', class_='highlight-text__children')[1].text
+
+    # print(home_team_bets_percentage)
+    # print(away_team_bets_percentage)
+    b = Bet(home_team, away_team, game_date, away_open, home_open, best_odds, away_team_bet_odds, home_team_bet_odds, away_team_bets_percentage, home_team_bets_percentage)
+    # print(b)
+    bets.append(b)
+  print(bets)
+
+
+
 # get_espn_data("http://site.api.espn.com/apis/site/v2/sports/basketball/nba/news")
 # scrape_bleacher_report('nba', 'articleContent')
 # get_bleacher_report_article('https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc')
-scrape_espn_article()
+# scrape_espn_article()
+
+get_betting_lines(Sport.NFL)
+# the ringer
+# action network
