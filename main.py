@@ -113,7 +113,7 @@ def scrape_bleacher_report(sport, css_class = 'articleContent') -> List[Rumor]:
 def get_bleacher_report_article(article_url) -> Article:
   response = requests.get(article_url)
   soup = BeautifulSoup(response.text, 'html.parser')
-  print(article_url)
+  # print(article_url)
   # find the image of the article
   image_div = soup.find('div', {'class': 'articleLeadImage'})
   image_src = image_div.find('img')['src']

@@ -12,7 +12,7 @@ def extract_xml_data(xml: str):
   match = re.search('<articles>(.*?)</articles>', xml)
   if match:
     content = match.group(1)
-    print(content)
+
 
   return content
 
@@ -21,7 +21,7 @@ def extract_array_from_string(string: str):
   if match:
       json_str = match.group(0)
       articles = json.loads(json_str.replace("'", "\""))
-      print(articles)
+      # print(articles)
 
 
 def respell_request(inputs, spellId: str, spellVersionId: str):
@@ -55,6 +55,7 @@ def find_best_articles(articles_list: List[Article] = []):
     "articles": json.dumps(articles[0:10]) # right now only worry about the top ten
   }
   # print(articles)
+  print('--- making respell articles request ---')
   respell_resp = respell_request(
     inputs,
     spellId="1Lkc-tCYn5KSd97eGrlhZ",
