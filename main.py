@@ -188,6 +188,6 @@ def get_betting_lines(sport: Sport) -> List[Bet]:
 # get_bleacher_report_article('https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc')
 # scrape_espn_article()
 
-get_betting_lines(Sport.NFL)
+get_betting_lines(Sport.NBA)
 # the ringer
 # action network
