@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Machine Learning File",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/machine-learning.py",
+            "console": "integratedTerminal",
+            "python": "/Users/baileyspell/miniconda3/envs/respell/bin/python"
+        }
+    ]
+}

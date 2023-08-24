@@ -14,7 +14,6 @@ from helpers import dict_to_article
 
 load_dotenv()
 
-
 class FavoriteSports(Enum):
   NBA = " NBA Basketball"
   NFL = "NFL Football"
@@ -159,8 +158,8 @@ def bleacher_report_rumor_to_article(rumor: Rumor) -> Article:
   
   return Article(rumor.title, rumor.author, rumor.link, '', '', '')
 
-def get_betting_lines(sport: Sport) -> List[Bet]:
-  url = f'https://www.actionnetwork.com/{sport.value}/public-betting'
+def get_betting_lines(sport: str) -> List[Bet]:
+  url = f'https://www.actionnetwork.com/{sport}/public-betting'
   headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
   }
@@ -199,8 +198,8 @@ def get_betting_lines(sport: Sport) -> List[Bet]:
     away_team = r.find_all('div', class_='game-info__team--desktop')[0].span.text
     home_team = r.find_all('div', class_='game-info__team--desktop')[1].span.text
 
-    away_open = float(r.find_all('div', class_='public-betting__open-cell')[0].text)
-    home_open = float(r.find_all('div', class_='public-betting__open-cell')[1].text)
+    away_open = r.find_all('div', class_='public-betting__open-cell')[0].text
+    home_open = r.find_all('div', class_='public-betting__open-cell')[1].text
     best_odds = 0.0# float(r.find('span', class_='css-1qynun2 ena22472').text)
 
     away_team_bet_odds = r.find_all('div', class_='book-cell__odds')[0].span.text.strip('%')

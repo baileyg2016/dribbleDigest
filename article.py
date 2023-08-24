@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 @dataclass
 class Article:
@@ -11,3 +11,6 @@ class Article:
 
   def __str__(self):
     return f'Title: {self.title}\nAuthor: {self.author}\nLink: {self.link}\nContent: {self.content}\n'
+  
+  def to_dict(self):
+    return asdict(self)
