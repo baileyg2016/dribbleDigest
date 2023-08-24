@@ -48,20 +48,20 @@ def find_best_articles(articles_list: List[Article] = []):
   favorite_sports = ['nba', 'nfl']
   favorite_teams = ['Warriors', '49ers']
   articles = news_controller(favorite_sports, favorite_teams, True)
-  print(articles[0:5])
+
   inputs = {
-    "favorite_sports": favorite_sports,
-    "favorite_teams": favorite_teams,
-    "articles": articles
+    "favorite_sports": json.dumps(favorite_sports),
+    "favorite_teams": json.dumps(favorite_teams),
+    "articles": json.dumps(articles[0:10]) # right now only worry about the top ten
   }
   # print(articles)
   respell_resp = respell_request(
     inputs,
     spellId="1Lkc-tCYn5KSd97eGrlhZ",
-    spellVersionId="k7fucmn0nlHAlvdeYnAbs"
+    spellVersionId="lkL0hGfE7IZARcWxPorlg"
   )
-
   print(respell_resp)
+  print(respell_resp['outputs']['output'])
   array = np.array(extract_xml_data(respell_resp['outputs']['output']).split(','))
   print(array[0])
   
