@@ -68,7 +68,7 @@ def scrape_espn_article(url = 'https://www.espn.com/nba/story/_/id/38241515/nbpa
   
   return Article(title, author, url, article_text, '', date)
 
-def get_espn_article_data(url) -> str:
+def get_espn_article_body(url) -> str:
   headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
   }
@@ -85,7 +85,7 @@ def get_espn_data(sport: FavoriteSports):
   response = requests.get(espn_endpoint)
   data = response.json()
   articles = np.array(data['articles'])
-  return [dict_to_article(data, get_espn_article_data) for data in articles]
+  return [dict_to_article(data, get_espn_article_body) for data in articles]
 
 # used to get the bleacher report for rumors
 # nba: https://bleacherreport.com/nba-rumors?from=sub
@@ -114,7 +114,7 @@ def scrape_bleacher_report(sport, css_class = 'articleContent') -> List[Rumor]:
 def get_bleacher_report_article(article_url) -> Article:
   response = requests.get(article_url)
   soup = BeautifulSoup(response.text, 'html.parser')
-
+  print(article_url)
   # find the image of the article
   image_div = soup.find('div', {'class': 'articleLeadImage'})
   image_src = image_div.find('img')['src']
@@ -130,9 +130,34 @@ def get_bleacher_report_article(article_url) -> Article:
   title = soup.find('article').find('header').find('h1').text
   
   # find date
-  date = soup.find('span', {'class': 'date' }).text
+  date = ''
+  try:
+    date = soup.find('span', {'class': 'date' }).text
+  except Exception:
+    pass
 
   return Article(title, author, article_url, article_text, image_src, date)
+
+def scrape_the_ringer_article(article_url) -> Article:
+  response = requests.get(article_url)
+  soup = BeautifulSoup(response.text, 'html.parser')
+
+  title = soup.find('h1', {'class': 'c-page-title'}).text
+  author = soup.find('span', {'class': 'c-byline__author-name'}).text
+  date = soup.find('time', {'class': 'c-byline__item'}).text
+  image = soup.find('picture', {'class': 'c-picture'}).find('img')['src']
+
+  body_div = soup.find('div', {'class': 'c-entry-content'})
+  article_text = ''.join([p.get_text() for p in body_div.find_all('p')])
+  return Article(title, author, article_url, article_text, image, date)
+
+def bleacher_report_rumor_to_article(rumor: Rumor) -> Article:
+  if (rumor.link.find('theringer') != -1):
+    return scrape_the_ringer_article(rumor.link)
+  if (rumor.link.find('bleacherreport') != -1):
+    return get_bleacher_report_article(rumor.link)
+  
+  return Article(rumor.title, rumor.author, rumor.link, '', '', '')
 
 def get_betting_lines(sport: Sport) -> List[Bet]:
   url = f'https://www.actionnetwork.com/{sport.value}/public-betting'
@@ -199,6 +224,6 @@ def get_betting_lines(sport: Sport) -> List[Bet]:
 # get_bleacher_report_article('https://bleacherreport.com/articles/10087072-report-cal-stanford-smu-additions-again-under-serious-consideration-by-acc')
 # scrape_espn_article()
 
-get_betting_lines(Sport.NFL)
+# get_betting_lines(Sport.NFL)
 # the ringer
 # action network
