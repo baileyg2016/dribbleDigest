@@ -5,6 +5,7 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 import os
 from jinja2 import Environment, PackageLoader, select_autoescape
+from datetime import date
 
 load_dotenv()
 
@@ -18,7 +19,9 @@ def send(email, email_subject, headline, image, articles, rumors, bets, includeB
     )
     template = env.get_template("template.html")
     
-    html = template.render(headline=headline, image=image, articles=articles, rumors=rumors, bets=bets,includeBets=includeBets)
+    today = date.today()
+    today.strftime("%A, %B %d, %Y")
+    html = template.render(headline=headline, image=image, articles=articles, rumors=rumors, bets=bets,includeBets=includeBets, today=today)
 
     message = MIMEMultipart("alternative")
     message["Subject"] = email_subject
