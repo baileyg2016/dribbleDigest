@@ -9,10 +9,8 @@
                </tr>
            </table>
 
-           <!-- TODO headline link -->
            <a href="https://example.com" style="color: #fff; font-size: 2rem; font-weight: 800; text-align: center; display: block; text-decoration: none; margin: 4rem 4rem 0 4rem;">
-               <!-- TODO headline -->
-               "Josh Jacobs Rumors: Dolphins Inquired About Trade, Raiders Said RB Isn't Available"
+               "{{ headline }}"
            </a>
 
            <table style="width: 100%;">
@@ -31,10 +29,10 @@
            </p>
 
            <div style="margin: 4rem 4.5rem 0 4.5rem">
-               <img style="width: 100%; height: auto; border-radius: 10px;" src="https://media.bleacherreport.com/image/upload/w_800,h_533,c_fill/v1692882843/tooaszoxs90ozmja1yvh.jpg" alt="Headline image">
+               <img style="width: 100%; height: auto; border-radius: 10px;" src="{{ image }}" alt="Headline image">
            </div>
 
-            <!-- TODO if betting is showing -->
+           {% if includeBets %}
            <table style="width: 100%;">
                <tr>
                    <td style="width: 4rem;">
@@ -50,49 +48,44 @@
                    </td>
                </tr>
            </table>
+           {% endif %}
 
         <div style="background-color: #FBBCA2; border-radius: 10px; padding: 1.5rem 2rem 2rem 2rem; margin: 6rem 4rem 4rem 4rem;">
             <img style="width: auto; height: 23px; display: block; margin: 0 auto 0 auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/rumors.png" alt="Rumors">
 
-            <!-- TODO rumor entries -->
-            <a href="https://twitter.com/AdamSchefter/status/1694785795758895282" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; background-color: #EDB299; padding: 1rem 1rem 1rem 1rem; border-radius: 10px;">
+            {% for rumor in rumors %}
+            {% if loop.index % 2 != 0 %}
+
+            <a href="{{ rumor.link }}" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; background-color: #EDB299; padding: 1rem 1rem 1rem 1rem; border-radius: 10px;">
                 <p style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
                     <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png" alt="Logo">
 
-                        Cardinals Make Another Trade
+                        {{ rumor.title }}
                     </p>
                 <p style="margin: .5rem 0 0 1.5rem; color: #292D3D; font-size: 14px;">
-                        &mdash; Adam Schefter
+                        &mdash; {{ rumor.author }}
                     </p>
             </a>
-
-            <a href="https://twitter.com/AdamSchefter/status/1694785795758895282" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; padding: 0 1rem 0 1rem; border-radius: 10px;">
+            {% endif %}
+            {% if loop.index % 2 != 0 %}
+            <a href="{{ rumor.link }}" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; padding: 0 1rem 0 1rem; border-radius: 10px;">
                 <p style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
                     <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png" alt="Logo">
 
-                    Cardinals Make Another Trade
+                    {{ rumor.title }}
                 </p>
                 <p style="margin: .5rem 0 0 1.5rem; color: #292D3D; font-size: 14px;">
-                    &mdash; Adam Schefter
+                    &mdash; {{ rumor.author }}
                 </p>
             </a>
-
-            <a href="https://twitter.com/AdamSchefter/status/1694785795758895282" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; background-color: #EDB299; padding: 1rem 1rem 1rem 1rem; border-radius: 10px;">
-                <p style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
-                    <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png" alt="Logo">
-
-                    Cardinals Make Another Trade
-                </p>
-                <p style="margin: .5rem 0 0 1.5rem; color: #292D3D; font-size: 14px;">
-                    &mdash; Adam Schefter
-                </p>
-            </a>
+            {% endif %}
+            {% endfor %}
         </div>
 
         <img style="width: auto; height: 35px; display: block; margin: 6rem auto 3rem auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/your-stories.png" alt="Stories For you">
 
-        <!-- TODO article entries -->
-        <a href="https://example.com" style="display: block; margin: 2rem 4rem 0 4rem; color: #fff; text-decoration: none;">
+        {% for article in articles %}
+        <a href="{{ article.link }}" style="display: block; margin: 2rem 4rem 0 4rem; color: #fff; text-decoration: none;">
             <table>
                 <tr>
                     <td style="margin-right: 1rem">
@@ -101,37 +94,18 @@
 
                     <td>
                         <p style="font-size: 16px; font-weight: 600; color: #fff; margin: 0;">
-                            Damian Lillard Confirms Trade Request, 'Would Just Prefer Not to Speak' About Blazers
+                            {{ article.title }}
                         </p>
 
                         <p style="font-size: 14px; font-weight: 400; color: #747B94; margin-top: .5rem">
-                            Tyler Conway
+                            {{ article.content.substring(0, 20) }}...
                         </p>
                     </td>
                 </tr>
             </table>
         </a>
-
-        <a href="https://example.com" style="display: block; margin: 2rem 4rem 0 4rem; color: #fff; text-decoration: none;">
-            <table>
-                <tr>
-                    <td style="margin-right: 1rem">
-                        <img style="width: 6rem; height: auto; margin: 0 .4rem 0 0; border: solid 2px #747B94; border-radius: 10px;" src="https://media.bleacherreport.com/image/upload/w_40,h_27,c_fill/v1692888249/wr0flcthoee5lcu7non1.jpg" alt="Logo">
-                    </td>
-
-                    <td>
-                        <p style="font-size: 16px; font-weight: 600; color: #fff; margin: 0;">
-                            Damian Lillard Confirms Trade Request, 'Would Just Prefer Not to Speak' About Blazers
-                        </p>
-
-                        <p style="font-size: 14px; font-weight: 400; color: #747B94; margin-top: .5rem">
-                            Tyler Conway
-
-                        </p>
-                    </td>
-                </tr>
-            </table>
-        </a>
+        {% endfor %}
+    
         <div style="height: 10rem" />
        </div>
    </body>

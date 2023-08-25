@@ -4,6 +4,7 @@ from controllers import rumors_controller, news_controller, betting_lines_contro
 from dataclasses import asdict
 import threading
 import json
+import digest
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -53,9 +54,10 @@ def get_bets():
 @app.route('/', methods=['POST'])
 def get_data():
     body = request.get_json()
+    print(body)
     email = body.get('email')
     includeBets = body.get('includeBets')
-    favorite_sport = body.get('favoriteSports')
+    favorite_sport = body.get('favoriteLeagues')
     favorite_team = body.get('favoriteTeams')
 
     # Create containers for the results
@@ -106,8 +108,10 @@ def get_data():
     print(rumors)
     print(bets)
 
+    digest.send(email, email_subject, "1 Trade Each NFL Team Should Propose Before the 2023 Season", "https://media.bleacherreport.com/image/upload/w_800,h_533,c_fill/v1692802630/fwh2efa0ulz2d8q5fz72.jpg", articles, rumors, bets, includeBets)
+
     return jsonify({'articles': json.dumps(articles, default=str), 'rumors': json.dumps(rumors, default=str), 'bets': json.dumps(bets, default=str), 'email_subject': email_subject})
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=3000)
