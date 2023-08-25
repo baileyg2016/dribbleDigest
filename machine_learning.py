@@ -139,6 +139,7 @@ def get_best_betting_lines(bets, favorite_sports: List[str] = ['nba', 'nfl'], fa
   # print(json.loads(respell_resp['outputs']['output']))
   # print('model output', respell_resp['outputs']['output'])
   best_bets_indices = np.array(string, dtype=int)
+  best_bets_indices = best_bets_indices[best_bets_indices < len(bets)]
   # print(best_bets_indices)
   # print(bets[best_bets_indices])
   return bets[best_bets_indices]

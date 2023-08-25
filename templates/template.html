@@ -1,76 +1,297 @@
 <html>
-   <body>
-    <div style="max-width: 670px; background-color: #060B1C; font-family: &quot;Inter&quot;, BlinkMacSystemFont, -apple-system, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, &quot;Arial&quot;, sans-serif !important;">
-           <table style="width: 100%;">
-               <tr>
-                   <td style="text-align: center;">
-                       <img style="width: 12rem; height: auto; margin-top: 6rem;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/digest.png" alt="Logo">
-                   </td>
-               </tr>
-           </table>
 
-           <p style="color: #fff; font-size: 2rem; font-weight: 800; text-align: center; display: block; text-decoration: none; margin: 4rem 4rem 0 4rem;">
-               {{ headline }}
-           </a>
+<body>
+    <div
+        style="max-width: 670px; background-color: #060B1C; font-family: &quot;Inter&quot;, BlinkMacSystemFont, -apple-system, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, &quot;Helvetica&quot;, &quot;Arial&quot;, sans-serif !important;">
+        <table style="width: 100%;">
+            <tr>
+                <td style="text-align: center;">
+                    <img style="width: 12rem; height: auto; margin-top: 6rem;"
+                        src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/digest.png"
+                        alt="Logo">
+                </td>
+            </tr>
+        </table>
 
-           <table style="width: 100%;">
-               <tr>
-                   <td style="text-align: center;">
-                      <div style="display: inline-block; width: 35px; height: 2px; background-color: #fff; border-radius: 10px; margin: 1rem 0 1rem 0;">
+        <p
+            style="color: #fff; font-size: 2rem; font-weight: 800; text-align: center; display: block; text-decoration: none; margin: 4rem 4rem 0 4rem;">
+            {{ headline }}
+            </a>
 
-                      </div>
-                   </td>
-               </tr>
-           </table>
+        <table style="width: 100%;">
+            <tr>
+                <td style="text-align: center;">
+                    <div
+                        style="display: inline-block; width: 35px; height: 2px; background-color: #fff; border-radius: 10px; margin: 1rem 0 1rem 0;">
 
-           <p style="color: #B4B6BB; font-size: .8rem; font-weight: 400; text-align: center; margin: 0;">
-               <!-- TODO date -->
-               Friday, August 25, 2023
-           </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-           <div style="margin: 4rem 4.5rem 0 4.5rem">
-               <img style="width: 100%; height: auto; border-radius: 10px;" src="{{ image }}" alt="Headline image">
-           </div>
+        <p style="color: #B4B6BB; font-size: .8rem; font-weight: 400; text-align: center; margin: 0;">
+            <!-- TODO date -->
+            Friday, August 25, 2023
+        </p>
 
-           {% if includeBets %}
-           <table style="width: 100%;">
-               <tr>
-                   <td style="width: 4rem;">
-                       <img style="width: 100%; height: auto; margin-top: 14rem;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/curve-left.png" alt="Logo">
-                   </td>
-                   <td>
-                       <img style="width: auto; height: 35px; display: block; margin: 2rem auto 0 auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/betting-lines.png" alt="Betting Lines">
+        <div style="margin: 4rem 4.5rem 0 4.5rem">
+            <img style="width: 100%; height: auto; border-radius: 10px;" src="{{ image }}" alt="Headline image">
+        </div>
 
-                       <div style="height: 10rem;"></div>
-                   </td>
-                   <td style="width: 4rem;">
-                       <img style="width: 100%; height: auto; margin-top: .5rem;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/curve-right.png" alt="Logo">
-                   </td>
-               </tr>
-           </table>
-           {% endif %}
+        {% if includeBets %}
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 4rem;">
+                    <img style="width: 100%; height: auto; margin-top: 14rem;"
+                        src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/curve-left.png"
+                        alt="Logo">
+                </td>
+                <td>
+                    <img style="width: auto; height: 35px; display: block; margin: 2rem auto 0 auto;"
+                        src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/betting-lines.png"
+                        alt="Betting Lines">
 
-        <div style="background-color: #FBBCA2; border-radius: 10px; padding: 1.5rem 2rem 2rem 2rem; margin: 6rem 4rem 4rem 4rem;">
-            <img style="width: auto; height: 23px; display: block; margin: 0 auto 0 auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/rumors.png" alt="Rumors">
+                    <div style="height: 10rem;"></div>
+                </td>
+                <td style="width: 4rem;">
+                    <img style="width: 100%; height: auto; margin-top: .5rem;"
+                        src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/curve-right.png"
+                        alt="Logo">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+            <tbody>
+                <tr>
+                    <td class="m_-1354674820645929782pcard370" style="padding:15px">
+                        <h3
+                            style="font-family:Helvetica,Arial,sans-serif;font-size:16px;color:#1c7ff2;font-weight:700;margin-top:0;margin-bottom:0">
+                            BETTING LINES
+                        </h3>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
+            <tbody>
+                <tr>
+                    <td>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                            style="border-collapse:collapse">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Game
+                                    </td>
+                                    <td>
+                                        Open
+                                    </td>
+                                    <td>
+                                        Best Odds
+                                    </td>
+                                    <td>
+                                        % of Bets
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m_-1354674820645929782pad5m">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="m_-1354674820645929782pads10 m_-1354674820645929782pads6m"
+                        style="border-bottom:1px solid #e6e6e6;padding-bottom:0;text-align:center;border-top:1px solid #e6e6e6">
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                            style="border-collapse:collapse">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="middle"
+                                        style="width:12%;text-align:center;line-height:1em">
+                                    </td>
+                                    <td class="m_-1354674820645929782markets-ticker-cell" valign="middle"
+                                        style="width:34%">
+                                        <div class="css-1wjesfo ev4q0cy0" style="align-items: center; height: 100px;">
+                                            <div class="game-info__teams">
+                                                <div class="game-info__team" style="display: inline-block;">
+                                                    <div class="game-info__placeholder">
+                                                        <div class="LazyLoad is-visible"
+                                                            style="height: 24px; display: inline-block;"><img
+                                                                alt="Lions Team Icon"
+                                                                src="https://static.sprtactn.co/teamlogos/nfl/100/det.png"
+                                                                height="24" class="game-info__team-icon"></div>
+                                                    </div>
+                                                    <div class="game-info__team-info">
+                                                        <div class="game-info__team--desktop"
+                                                            style="display: inline-block;">
+                                                            <span
+                                                                style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">
+                                                                Lions
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="game-info__teams">
+                                                <div class="game-info__team" style="display: inline-block;">
+                                                    <div class="game-info__placeholder" style="display: inline-block;">
+                                                        <div class="LazyLoad is-visible"
+                                                            style="height: 24px; display: inline-block;"><img
+                                                                alt="Lions Team Icon"
+                                                                src="https://static.sprtactn.co/teamlogos/nfl/100/car.png"
+                                                                height="24" class="game-info__team-icon"></div>
+                                                        <div class="game-info__team-info"
+                                                            style="display: inline-block; padding-left: 5px; padding-bottom: 5px;">
+                                                            <div class="game-info__team--desktop"
+                                                                style="display: inline-block;"><span
+                                                                    style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">Panthers</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td class="m_-1354674820645929782markets-value-cell" valign="middle"
+                                        style="width:34%">
+                                        <p class="m_-1354674820645929782markets-table-text"
+                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">
+                                            34,288.83</p>
+                                    </td> -->
+                                    <td>
+                                        <div class="public-betting__odds-container">
+                                            <div class="css-heay3u ena22470">
+                                                <div data-testid="book-cell__odds" class="book-cell__odds"><span
+                                                        style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">+2</span>
+                                                </div>
+                                                <div class="css-heay3u ena22470">
+                                                    <div data-testid="book-cell__odds" class="book-cell__odds">
+                                                        <span
+                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">-2</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </td>
+                                    <td style="width: 95px;">
+                                        <div class="public-betting__odds-container">
+                                            <div class="css-heay3u ena22470">
+                                                <div data-testid="book-cell__odds" class="book-cell__odds"><span
+                                                        style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">+4.5</span>
+                                                </div>
+                                                <div class="css-heay3u ena22470">
+                                                    <div data-testid="book-cell__odds" class="book-cell__odds">
+                                                        <span
+                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">-4</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </td>
+                                    <td valign="middle" style="width:20%;padding-top:8px;padding-bottom:8px">
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0"
+                                            style="width:70%;border-collapse:separate;margin:0 auto; border-spacing: 4px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td valign="middle"
+                                                        style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px;background-color:#808080;background-color:rgba(128,128,128,0.3)">
+                                                        <p class="m_-1354674820645929782markets-table-text"
+                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
+                                                            28%</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle"
+                                                        style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px;background: color #808080;;background-color:rgba(128,128,128,0.3)">
+                                                        <p class="m_-1354674820645929782markets-table-text"
+                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
+                                                            72%</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Maybe use this for the quick summary? No idea... im tired af -->
+                <!-- <tr>
+                    <td style="padding:3px 15px 10px 15px">
+                        <p
+                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;text-align:left;font-size:13px">
+                            *Do.
+                            <a rel="noopener"
+                                href="https://links.morningbrew.com/c/s1?mbcid=32480689.646603&amp;mid=73c5c88bfa24be0ff8297f13ed5ebdc5"
+                                style="border-bottom:1px solid #1c7ff2;text-decoration:none;color:#333" target="_blank"
+                                data-saferedirecturl="https://www.google.com/url?q=https://links.morningbrew.com/c/s1?mbcid%3D32480689.646603%26mid%3D73c5c88bfa24be0ff8297f13ed5ebdc5&amp;source=gmail&amp;ust=1693025221245000&amp;usg=AOvVaw3bMSiPZaKXFWn2aCrp6A3e">Here's
+                                what these numbers mean.</a>
+                        </p>
+                    </td>
+                </tr> -->
+
+                <!-- <tr>
+                    <td style="padding:0px 15px">
+                        <ul style="margin-top:0;padding-left:30px">
+                            <li style="line-height:22px;margin-bottom:10px">
+                                <span><strong style="color:#000">Markets: </strong></span><span>A rough August for the
+                                    S&amp;P 500 </span><span><a
+                                        href="https://links.morningbrew.com/c/b0W?mblid=e0b935bbd2f5&amp;mbcid=32480689.646603&amp;mid=73c5c88bfa24be0ff8297f13ed5ebdc5"
+                                        style="border-bottom:2px solid #1c7ff2;text-decoration:none;color:#333"
+                                        target="_blank"
+                                        data-saferedirecturl="https://www.google.com/url?q=https://links.morningbrew.com/c/b0W?mblid%3De0b935bbd2f5%26mbcid%3D32480689.646603%26mid%3D73c5c88bfa24be0ff8297f13ed5ebdc5&amp;source=gmail&amp;ust=1693025221245000&amp;usg=AOvVaw1ymcyXgrpBaQnGYAPPFi6h">didn’t
+                                        get any better</a></span><span> yesterday. Shares of US banks fell after several
+                                    regional lenders were hit with a credit downgrade. And retailers, which you’ll read
+                                    about in a bit, have a glut of products that aren’t selling. In a sign of those
+                                    consumer worries, Nike shares notched their longest losing streak ever, falling for
+                                    the ninth straight day.</span>
+                            </li>
+                        </ul>
+                        <div style="display:none">&nbsp;</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:0px 20px">
+                    </td>
+                </tr>
+            </tbody> -->
+        </table>
+        {% endif %}
+
+        <div
+            style="background-color: #FBBCA2; border-radius: 10px; padding: 1.5rem 2rem 2rem 2rem; margin: 6rem 4rem 4rem 4rem;">
+            <img style="width: auto; height: 23px; display: block; margin: 0 auto 0 auto;"
+                src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/rumors.png" alt="Rumors">
 
             {% for rumor in rumors %}
             {% if loop.index % 2 != 0 %}
 
-            <a href="{{ rumor.link }}" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; background-color: #EDB299; padding: 1rem 1rem 1rem 1rem; border-radius: 10px;">
-                <p style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
-                    <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png" alt="Logo">
+            <a href="{{ rumor.link }}"
+                style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; background-color: #EDB299; padding: 1rem 1rem 1rem 1rem; border-radius: 10px;">
+                <p
+                    style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
+                    <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;"
+                        src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png"
+                        alt="Logo">
 
-                        {{ rumor.title }}
-                    </p>
+                    {{ rumor.title }}
+                </p>
                 <p style="margin: .5rem 0 0 1.5rem; color: #292D3D; font-size: 14px;">
-                        &mdash; {{ rumor.author }}
-                    </p>
+                    &mdash; {{ rumor.author }}
+                </p>
             </a>
             {% endif %}
             {% if loop.index % 2 == 0 %}
-            <a href="{{ rumor.link }}" style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; padding: 0 1rem 0 1rem; border-radius: 10px;">
-                <p style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
-                    <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png" alt="Logo">
+            <a href="{{ rumor.link }}"
+                style="text-decoration: none; color: #060B1C; margin-top: 1.5rem; display: block; padding: 0 1rem 0 1rem; border-radius: 10px;">
+                <p
+                    style="text-decoration: none; font-weight: 600; font-size: 16px; color: #060B1C; margin: 0; vertical-align: middle;">
+                    <img style="width: 10px; height: auto; margin: 0rem .4rem 0 0;"
+                        src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/lightbulb.png"
+                        alt="Logo">
 
                     {{ rumor.title }}
                 </p>
@@ -82,14 +303,18 @@
             {% endfor %}
         </div>
 
-        <img style="width: auto; height: 35px; display: block; margin: 6rem auto 3rem auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/your-stories.png" alt="Stories For you">
+        <img style="width: auto; height: 35px; display: block; margin: 6rem auto 3rem auto;"
+            src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/your-stories.png"
+            alt="Stories For you">
 
         {% for article in articles %}
-        <a href="{{ article.link }}" style="display: block; margin: 2rem 4rem 0 4rem; color: #fff; text-decoration: none;">
+        <a href="{{ article.link }}"
+            style="display: block; margin: 2rem 4rem 0 4rem; color: #fff; text-decoration: none;">
             <table>
                 <tr>
                     <td style="margin-right: 1rem">
-                        <img style="width: 6rem; height: auto; margin: 0 .4rem 0 0; border: solid 2px #747B94; border-radius: 10px;" src="{{ article.image }}" alt="Logo">
+                        <img style="width: 6rem; height: auto; margin: 0 .4rem 0 0; border: solid 2px #747B94; border-radius: 10px;"
+                            src="{{ article.image }}" alt="Logo">
                     </td>
 
                     <td>
@@ -105,8 +330,9 @@
             </table>
         </a>
         {% endfor %}
-    
+
         <div style="height: 10rem" />
-       </div>
-   </body>
+    </div>
+</body>
+
 </html>
