@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 from jinja2 import Environment, PackageLoader, select_autoescape
 from datetime import date
+from email.utils import formataddr
 
 load_dotenv()
 
@@ -25,7 +26,7 @@ def send(email, email_subject, headline, image, articles, rumors, bets, includeB
 
     message = MIMEMultipart("alternative")
     message["Subject"] = email_subject
-    message["From"] = 'dribbledigest1@gmail.com'
+    message['From'] = formataddr(('Dribble Digest', 'dribbledigest1@gmail.com'))
     message["To"] = email
 
     message.attach(MIMEText(html, "html"))
