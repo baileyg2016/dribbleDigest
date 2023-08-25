@@ -1,4 +1,6 @@
 from article import Article
+import json
+from datetime import datetime
 
 def dict_to_article(data, scrap_func):
   title = data['headline'].strip('!@#$%^&*()[]{};:,./<>?\|`~-=_+')
@@ -14,3 +16,10 @@ def dict_to_article(data, scrap_func):
   image = data['images'][0]['url'] if data['images'] else ''
   date = data['published']
   return Article(title, author, link, content, image, date)
+
+
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        return super(DateTimeEncoder, self).default(obj)
