@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 from bets import Bet
 from helpers import DateTimeEncoder
 
-from controllers import rumors_controller, news_controller, betting_lines_controller
+# from controllers import rumors_controller, news_controller, betting_lines_controller
 
 #### XML PARSING ####
 def extract_array_from_xml(xml_string: str):
@@ -56,10 +56,8 @@ def respell_request(inputs, spellId: str, spellVersionId: str):
 
   return resp.json()
 
-def find_best_articles(articles_list: List[Article] = []):
-  favorite_sports = ['nba', 'nfl']
-  favorite_teams = ['Warriors', '49ers']
-  articles = np.array(news_controller(favorite_sports, favorite_teams, True))
+def find_best_articles(articles, favorite_sports: List[str] = ['nba', 'nfl'], favorite_teams: List[str] = ['Warriors', '49ers']):
+  articles = np.array(articles)
 
   inputs = {
     "favorite_sports": json.dumps(favorite_sports),
@@ -85,10 +83,8 @@ def find_best_articles(articles_list: List[Article] = []):
   # print(len(best_articles))
   return best_articles
   
-def find_best_rumors(rumors_list: List[Rumor] = []):
-  favorite_sports = ['nba', 'nfl']
-  favorite_teams = ['Warriors', '49ers']
-  rumors = np.array(rumors_controller(favorite_sports, favorite_teams, True))
+def find_best_rumors(rumors, favorite_sports: List[str] = ['nba', 'nfl'], favorite_teams: List[str] = ['Warriors', '49ers']):
+  rumors = np.array(rumors)
 
   inputs = {
     "favorite_sports": json.dumps(favorite_sports),
@@ -123,10 +119,8 @@ def get_email_subject(article_contents: List[str]):
   return respell_resp['outputs']['output']
 
 # we are assuming that bets is of python list type
-def get_best_betting_lines(bets: List[Bet]):
-  favorite_sports = ['nba', 'nfl']
-  favorite_teams = ['Warriors', '49ers']
-  bets = np.array(betting_lines_controller(favorite_sports, favorite_teams, True))
+def get_best_betting_lines(bets, favorite_sports: List[str] = ['nba', 'nfl'], favorite_teams: List[str] = ['Warriors', '49ers']):
+  bets = np.array(bets)
 
   inputs = {
     "favorite_sports": json.dumps(favorite_sports),
@@ -137,12 +131,13 @@ def get_best_betting_lines(bets: List[Bet]):
   respell_resp = respell_request(
     inputs,
     spellId="wWlc0jFJ8Ouf4zXsr0m7W",
-    spellVersionId="5pjVM3-minWHDUaGifWUo"
+    spellVersionId="KMTijEyWwnh5EhcizoRqJ"
   )
-  print('model output', respell_resp['outputs']['output'])
-  best_bets_indices = extract_array_from_xml(respell_resp['outputs']['output'])
-  print(best_bets_indices)
-  print(bets[best_bets_indices])
+  print(respell_resp['outputs']['output'])
+  # print('model output', respell_resp['outputs']['output'])
+  best_bets_indices = np.array(json.loads(respell_resp['outputs']['output'].strip()), dtype=int)
+  # print(best_bets_indices)
+  # print(bets[best_bets_indices])
   return bets[best_bets_indices]
 
 # testing articles
