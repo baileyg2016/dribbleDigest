@@ -18,7 +18,7 @@ def send_digest(email):
            <table style="width: 100%;">
                <tr>
                    <td style="text-align: center;">
-                       <img style="width: 12rem; height: auto; margin-top: 6rem;" src="https://hackstoragedribbledigest.blob.core.windows.net/svgs/dribbledigest.svg" alt="Logo">
+                       <img style="width: 12rem; height: auto; margin-top: 6rem;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/logo.svg" alt="Logo">
                    </td>
                </tr>
            </table>
