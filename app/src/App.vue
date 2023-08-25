@@ -61,6 +61,10 @@
 
       <transition name="grow-fade">
         <div v-if="isShowingTeams" class="select-dropdown" @click.stop="isShowingTeams = true">
+          <p class="caption-text" v-if="query && favoriteTeamOptions.filter((other) => other.toLowerCase().trim().startsWith(query)).length === 0">
+            No results
+          </p>
+
           <p v-for="option in query ? favoriteTeamOptions.filter((other) => other.toLowerCase().trim().startsWith(query)) : favoriteTeamOptions" :style="{color: data.favoriteTeams.includes(option) ? '#FBBCA2' : '#fff'}" class="hover-bg" style="text-align: left; font-weight: 600; display: flex; justify-content: start; align-items: center;" @click="data.favoriteTeams = data.favoriteTeams.includes(option) ? data.favoriteTeams.filter((other) => other !== option) : [...data.favoriteTeams, option].slice(0, 5)">
             {{ option }}
 
@@ -224,7 +228,9 @@ export default defineComponent({
 
       window.addEventListener('keydown', (e) => {
         if (isShowingTeams.value) {
-          if (e.key === ' ' || e.key === 'Delete' || e.key === 'Backspace') {
+          if (e.key === 'Escape') {
+            isShowingTeams.value = false;
+          } else if (e.key === ' ' || e.key === 'Delete' || e.key === 'Backspace') {
             query.value = '';
           } else {
             query.value = e.key;
