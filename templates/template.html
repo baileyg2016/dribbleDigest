@@ -51,7 +51,193 @@
                         src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/betting-lines.png"
                         alt="Betting Lines">
 
-                    <div style="height: 10rem;"></div>
+                    <table style="width: calc(100% - 3rem); border-collapse:collapse; border: none; margin: 1rem 1.5rem 0 1.5rem;">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                                       style="border-collapse:collapse; color: #747B94; table-layout: fixed; font-size: 10px; padding-bottom: 1rem;">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 34%">
+                                            Game
+                                            <div style="height: .5rem" />
+                                        </td>
+                                        <td style="width: 27%">
+                                            Open
+                                            <div style="height: .5rem" />
+                                        </td>
+                                        <td style="width: 27%">
+                                            Best Odds
+                                            <div style="height: .5rem" />
+                                        </td>
+                                        <td style="width: 20% !important">
+                                            % of Bets
+                                            <div style="height: .5rem" />
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="m_-1354674820645929782pad5m" style="border-bottom:1px solid #292D3D;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="m_-1354674820645929782pads10 m_-1354674820645929782pads6m"
+                                style="padding-bottom:0;text-align:center;border-top:1px solid #e6e6e6">
+                                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                                       style="border-collapse:collapse; color: #fff; font-size: 13px !important; font-weight: 600; table-layout: fixed;">
+                                    <tbody>
+                                    {% for bet in bets %}
+                                    <tr>
+                                        <td class="m_-1354674820645929782markets-ticker-cell" valign="middle"
+                                            style="width:34%">
+                                            <div class="css-1wjesfo ev4q0cy0">
+                                                <div class="game-info__teams">
+                                                    <div class="game-info__team" style="display: inline-block;">
+                                                        <div class="game-info__team-info">
+                                                            <div class="game-info__team--desktop"
+                                                                 style="display: inline-block; vertical-align: middle;">
+                                                                <img
+                                                                        alt="Lions Team Icon"
+                                                                        src="{{ home_team_image_url }}"
+                                                                        height="24" class="game-info__team-icon">
+                                                            <span style="display: inline-block; vertical-align: middle; line-height: 25px;  padding-left: 10px;">
+                                                                {{ home_team }}
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="game-info__teams">
+                                                    <div class="game-info__team" style="display: inline-block;">
+                                                        <div class="game-info__placeholder" style="display: inline-block;">
+                                                            <div class="game-info__team-info"
+                                                                 style="display: inline-block;">
+                                                                <div class="game-info__team--desktop"
+                                                                     style="display: inline-block;">
+                                                                    <img
+                                                                            alt="Lions Team Icon"
+                                                                            src="{{ away_team_image_url }}"
+                                                                            height="24" class="game-info__team-icon">
+                                                                    <span style=" padding-left: 10px;"
+                                                                        >{{ away_team }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- <td class="m_-1354674820645929782markets-value-cell" valign="middle"
+                                            style="width:34%">
+                                            <p class="m_-1354674820645929782markets-table-text"
+                                                style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">
+                                                34,288.83</p>
+                                        </td> -->
+                                        <td style="width: 27% !important">
+                                            <div class="public-betting__odds-container">
+                                                <div class="css-heay3u ena22470">
+                                                    <div data-testid="book-cell__odds" class="book-cell__odds"><span
+                                                            style="margin-bottom: 1rem; display: block;">{{ home_open }}</span>
+                                                    </div>
+                                                    <div class="css-heay3u ena22470">
+                                                        <div data-testid="book-cell__odds" class="book-cell__odds">
+                                                        <span style="display: block;">{{ away_open }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 27% !important">
+                                            <div class="public-betting__odds-container">
+                                                <div class="css-heay3u ena22470">
+                                                    <div data-testid="book-cell__odds" class="book-cell__odds"><span
+                                                            style="margin-bottom: 1rem; display: block;">{{ home_team_bets_odds }}</span>
+                                                    </div>
+                                                    <div class="css-heay3u ena22470">
+                                                        <div data-testid="book-cell__odds" class="book-cell__odds">
+                                                            <span style="display: block;">{{ away_team_bets_odds }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td valign="middle" style="width:20%;padding-top:8px;padding-bottom:8px">
+                                            <table role="presentation" cellpadding="0" cellspacing="0" border="0"
+                                                   style="width:100%;border-collapse:separate;margin:0 auto; border-spacing: 4px;">
+                                                <tbody>
+                                                <tr>
+                                                    <td valign="middle"
+                                                        style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px;color: #fff; background-color: #292D3D;">
+                                                        <p class="m_-1354674820645929782markets-table-text"
+                                                           style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
+                                                            {{ home_team_bets_percentage }}</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle"
+                                                        style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px; color: #fff; background-color: #292D3D;">
+                                                        <p class="m_-1354674820645929782markets-table-text"
+                                                           style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
+                                                            {{ away_team_bets_percentage }}</p>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Maybe use this for the quick summary? No idea... im tired af -->
+                        <!-- <tr>
+                            <td style="padding:3px 15px 10px 15px">
+                                <p
+                                    style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;text-align:left;font-size:13px">
+                                    *Do.
+                                    <a rel="noopener"
+                                        href="https://links.morningbrew.com/c/s1?mbcid=32480689.646603&amp;mid=73c5c88bfa24be0ff8297f13ed5ebdc5"
+                                        style="border-bottom:1px solid #1c7ff2;text-decoration:none;color:#333" target="_blank"
+                                        data-saferedirecturl="https://www.google.com/url?q=https://links.morningbrew.com/c/s1?mbcid%3D32480689.646603%26mid%3D73c5c88bfa24be0ff8297f13ed5ebdc5&amp;source=gmail&amp;ust=1693025221245000&amp;usg=AOvVaw3bMSiPZaKXFWn2aCrp6A3e">Here's
+                                        what these numbers mean.</a>
+                                </p>
+                            </td>
+                        </tr> -->
+
+                        <!-- <tr>
+                            <td style="padding:0px 15px">
+                                <ul style="margin-top:0;padding-left:30px">
+                                    <li style="line-height:22px;margin-bottom:10px">
+                                        <span><strong style="color:#000">Markets: </strong></span><span>A rough August for the
+                                            S&amp;P 500 </span><span><a
+                                                href="https://links.morningbrew.com/c/b0W?mblid=e0b935bbd2f5&amp;mbcid=32480689.646603&amp;mid=73c5c88bfa24be0ff8297f13ed5ebdc5"
+                                                style="border-bottom:2px solid #1c7ff2;text-decoration:none;color:#333"
+                                                target="_blank"
+                                                data-saferedirecturl="https://www.google.com/url?q=https://links.morningbrew.com/c/b0W?mblid%3De0b935bbd2f5%26mbcid%3D32480689.646603%26mid%3D73c5c88bfa24be0ff8297f13ed5ebdc5&amp;source=gmail&amp;ust=1693025221245000&amp;usg=AOvVaw1ymcyXgrpBaQnGYAPPFi6h">didn’t
+                                                get any better</a></span><span> yesterday. Shares of US banks fell after several
+                                            regional lenders were hit with a credit downgrade. And retailers, which you’ll read
+                                            about in a bit, have a glut of products that aren’t selling. In a sign of those
+                                            consumer worries, Nike shares notched their longest losing streak ever, falling for
+                                            the ninth straight day.</span>
+                                    </li>
+                                </ul>
+                                <div style="display:none">&nbsp;</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding:0px 20px">
+                            </td>
+                        </tr>
+                    </tbody> -->
+                    </table>
                 </td>
                 <td style="width: 4rem;">
                     <img style="width: 100%; height: auto; margin-top: .5rem;"
@@ -59,205 +245,6 @@
                         alt="Logo">
                 </td>
             </tr>
-        </table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
-            <tbody>
-                <tr>
-                    <td class="m_-1354674820645929782pcard370" style="padding:15px">
-                        <h3
-                            style="font-family:Helvetica,Arial,sans-serif;font-size:16px;color:#1c7ff2;font-weight:700;margin-top:0;margin-bottom:0">
-                            BETTING LINES
-                        </h3>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
-            <tbody>
-                <tr>
-                    <td>
-                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
-                            style="border-collapse:collapse">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        Game
-                                    </td>
-                                    <td>
-                                        Open
-                                    </td>
-                                    <td>
-                                        Best Odds
-                                    </td>
-                                    <td>
-                                        % of Bets
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="m_-1354674820645929782pad5m">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="m_-1354674820645929782pads10 m_-1354674820645929782pads6m"
-                        style="border-bottom:1px solid #e6e6e6;padding-bottom:0;text-align:center;border-top:1px solid #e6e6e6">
-                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
-                            style="border-collapse:collapse">
-                            <tbody>
-                                <tr>
-                                    <td align="center" valign="middle"
-                                        style="width:12%;text-align:center;line-height:1em">
-                                    </td>
-                                    <td class="m_-1354674820645929782markets-ticker-cell" valign="middle"
-                                        style="width:34%">
-                                        <div class="css-1wjesfo ev4q0cy0" style="align-items: center; height: 100px;">
-                                            <div class="game-info__teams">
-                                                <div class="game-info__team" style="display: inline-block;">
-                                                    <div class="game-info__placeholder">
-                                                        <div class="LazyLoad is-visible"
-                                                            style="height: 24px; display: inline-block;"><img
-                                                                alt="Lions Team Icon"
-                                                                src="https://static.sprtactn.co/teamlogos/nfl/100/det.png"
-                                                                height="24" class="game-info__team-icon"></div>
-                                                    </div>
-                                                    <div class="game-info__team-info">
-                                                        <div class="game-info__team--desktop"
-                                                            style="display: inline-block;">
-                                                            <span
-                                                                style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">
-                                                                Lions
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="game-info__teams">
-                                                <div class="game-info__team" style="display: inline-block;">
-                                                    <div class="game-info__placeholder" style="display: inline-block;">
-                                                        <div class="LazyLoad is-visible"
-                                                            style="height: 24px; display: inline-block;"><img
-                                                                alt="Lions Team Icon"
-                                                                src="https://static.sprtactn.co/teamlogos/nfl/100/car.png"
-                                                                height="24" class="game-info__team-icon"></div>
-                                                        <div class="game-info__team-info"
-                                                            style="display: inline-block; padding-left: 5px; padding-bottom: 5px;">
-                                                            <div class="game-info__team--desktop"
-                                                                style="display: inline-block;"><span
-                                                                    style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">Panthers</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <!-- <td class="m_-1354674820645929782markets-value-cell" valign="middle"
-                                        style="width:34%">
-                                        <p class="m_-1354674820645929782markets-table-text"
-                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">
-                                            34,288.83</p>
-                                    </td> -->
-                                    <td>
-                                        <div class="public-betting__odds-container">
-                                            <div class="css-heay3u ena22470">
-                                                <div data-testid="book-cell__odds" class="book-cell__odds"><span
-                                                        style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">+2</span>
-                                                </div>
-                                                <div class="css-heay3u ena22470">
-                                                    <div data-testid="book-cell__odds" class="book-cell__odds">
-                                                        <span
-                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">-2</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </td>
-                                    <td style="width: 95px;">
-                                        <div class="public-betting__odds-container">
-                                            <div class="css-heay3u ena22470">
-                                                <div data-testid="book-cell__odds" class="book-cell__odds"><span
-                                                        style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">+4.5</span>
-                                                </div>
-                                                <div class="css-heay3u ena22470">
-                                                    <div data-testid="book-cell__odds" class="book-cell__odds">
-                                                        <span
-                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:left">-4</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </td>
-                                    <td valign="middle" style="width:20%;padding-top:8px;padding-bottom:8px">
-                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0"
-                                            style="width:70%;border-collapse:separate;margin:0 auto; border-spacing: 4px;">
-                                            <tbody>
-                                                <tr>
-                                                    <td valign="middle"
-                                                        style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px;background-color:#808080;background-color:rgba(128,128,128,0.3)">
-                                                        <p class="m_-1354674820645929782markets-table-text"
-                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
-                                                            28%</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="middle"
-                                                        style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px;background: color #808080;;background-color:rgba(128,128,128,0.3)">
-                                                        <p class="m_-1354674820645929782markets-table-text"
-                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
-                                                            72%</p>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <!-- Maybe use this for the quick summary? No idea... im tired af -->
-                <!-- <tr>
-                    <td style="padding:3px 15px 10px 15px">
-                        <p
-                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;text-align:left;font-size:13px">
-                            *Do.
-                            <a rel="noopener"
-                                href="https://links.morningbrew.com/c/s1?mbcid=32480689.646603&amp;mid=73c5c88bfa24be0ff8297f13ed5ebdc5"
-                                style="border-bottom:1px solid #1c7ff2;text-decoration:none;color:#333" target="_blank"
-                                data-saferedirecturl="https://www.google.com/url?q=https://links.morningbrew.com/c/s1?mbcid%3D32480689.646603%26mid%3D73c5c88bfa24be0ff8297f13ed5ebdc5&amp;source=gmail&amp;ust=1693025221245000&amp;usg=AOvVaw3bMSiPZaKXFWn2aCrp6A3e">Here's
-                                what these numbers mean.</a>
-                        </p>
-                    </td>
-                </tr> -->
-
-                <!-- <tr>
-                    <td style="padding:0px 15px">
-                        <ul style="margin-top:0;padding-left:30px">
-                            <li style="line-height:22px;margin-bottom:10px">
-                                <span><strong style="color:#000">Markets: </strong></span><span>A rough August for the
-                                    S&amp;P 500 </span><span><a
-                                        href="https://links.morningbrew.com/c/b0W?mblid=e0b935bbd2f5&amp;mbcid=32480689.646603&amp;mid=73c5c88bfa24be0ff8297f13ed5ebdc5"
-                                        style="border-bottom:2px solid #1c7ff2;text-decoration:none;color:#333"
-                                        target="_blank"
-                                        data-saferedirecturl="https://www.google.com/url?q=https://links.morningbrew.com/c/b0W?mblid%3De0b935bbd2f5%26mbcid%3D32480689.646603%26mid%3D73c5c88bfa24be0ff8297f13ed5ebdc5&amp;source=gmail&amp;ust=1693025221245000&amp;usg=AOvVaw1ymcyXgrpBaQnGYAPPFi6h">didn’t
-                                        get any better</a></span><span> yesterday. Shares of US banks fell after several
-                                    regional lenders were hit with a credit downgrade. And retailers, which you’ll read
-                                    about in a bit, have a glut of products that aren’t selling. In a sign of those
-                                    consumer worries, Nike shares notched their longest losing streak ever, falling for
-                                    the ninth straight day.</span>
-                            </li>
-                        </ul>
-                        <div style="display:none">&nbsp;</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding:0px 20px">
-                    </td>
-                </tr>
-            </tbody> -->
         </table>
         {% endif %}
 
