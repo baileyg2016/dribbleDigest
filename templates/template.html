@@ -103,11 +103,10 @@
                                                             <div class="game-info__team--desktop"
                                                                  style="display: inline-block; vertical-align: middle;">
                                                                 <img
-                                                                        alt="Lions Team Icon"
-                                                                        src="{{ home_team_image_url }}"
-                                                                        height="24" class="game-info__team-icon">
+                                                                    src="{{ bet.home_team_image_url }}"
+                                                                    height="24" class="game-info__team-icon">
                                                             <span style="display: inline-block; vertical-align: middle; line-height: 25px;  padding-left: 10px;">
-                                                                {{ home_team }}
+                                                                {{ bet.home_team }}
                                                             </span>
                                                             </div>
                                                         </div>
@@ -121,11 +120,10 @@
                                                                 <div class="game-info__team--desktop"
                                                                      style="display: inline-block;">
                                                                     <img
-                                                                            alt="Lions Team Icon"
-                                                                            src="{{ away_team_image_url }}"
-                                                                            height="24" class="game-info__team-icon">
+                                                                        src="{{ bet.away_team_image_url }}"
+                                                                        height="24" class="game-info__team-icon">
                                                                     <span style=" padding-left: 10px;"
-                                                                        >{{ away_team }}</span>
+                                                                        >{{ bet.away_team }}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -143,11 +141,11 @@
                                             <div class="public-betting__odds-container">
                                                 <div class="css-heay3u ena22470">
                                                     <div data-testid="book-cell__odds" class="book-cell__odds"><span
-                                                            style="margin-bottom: 1rem; display: block;">{{ home_open }}</span>
+                                                            style="margin-bottom: 1rem; display: block;">{{ bet.home_open }}</span>
                                                     </div>
                                                     <div class="css-heay3u ena22470">
                                                         <div data-testid="book-cell__odds" class="book-cell__odds">
-                                                        <span style="display: block;">{{ away_open }}</span>
+                                                        <span style="display: block;">{{ bet.away_open }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,11 +155,11 @@
                                             <div class="public-betting__odds-container">
                                                 <div class="css-heay3u ena22470">
                                                     <div data-testid="book-cell__odds" class="book-cell__odds"><span
-                                                            style="margin-bottom: 1rem; display: block;">{{ home_team_bets_odds }}</span>
+                                                            style="margin-bottom: 1rem; display: block;">{{ bet.home_team_bets_odds }}</span>
                                                     </div>
                                                     <div class="css-heay3u ena22470">
                                                         <div data-testid="book-cell__odds" class="book-cell__odds">
-                                                            <span style="display: block;">{{ away_team_bets_odds }}</span>
+                                                            <span style="display: block;">{{ bet.away_team_bets_odds }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +174,7 @@
                                                         style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px;color: #fff; background-color: #292D3D;">
                                                         <p class="m_-1354674820645929782markets-table-text"
                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
-                                                            {{ home_team_bets_percentage }}</p>
+                                                            {{ bet.home_team_bets_percentage }}</p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -184,7 +182,7 @@
                                                         style="padding-left:8px;padding-right:8px;padding-top:10px;padding-bottom:10px;border-radius:8px; color: #fff; background-color: #292D3D;">
                                                         <p class="m_-1354674820645929782markets-table-text"
                                                            style="line-height:22px;margin-top:0;margin-bottom:15px;padding:0;margin:0;font-size:16px;white-space:nowrap;font-weight:bold;vertical-align:middle;line-height:1em;text-align:center">
-                                                            {{ away_team_bets_percentage }}</p>
+                                                            {{ bet.away_team_bets_percentage }}</p>
                                                     </td>
                                                 </tr>
                                                 </tbody>

@@ -115,9 +115,10 @@ def get_bleacher_report_article(article_url) -> Article:
   soup = BeautifulSoup(response.text, 'html.parser')
   # print(article_url)
   # find the image of the article
+  
   image_div = soup.find('div', {'class': 'articleLeadImage'})
   image_src = image_div.find('img')['src']
-
+  image_src = image_src.replace('w_40,h_27', 'w_800,h_533')
   # find of all of article text
   content_stream_div = soup.find('div', class_='contentStream')
   article_text = ''.join([p.get_text() for p in content_stream_div.find_all('p')])

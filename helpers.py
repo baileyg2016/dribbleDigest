@@ -13,6 +13,7 @@ def dict_to_article(data, scrap_func):
     # print(data)
     # print()
     content = ''
+
   image = data['images'][0]['url'] if data['images'] else ''
   date = data['published']
   return Article(title, author, link, content, image, date)

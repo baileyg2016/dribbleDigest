@@ -11,6 +11,8 @@ from email.utils import formataddr
 load_dotenv()
 
 def send(email, email_subject, headline, image, articles, rumors, bets, includeBets):
+    print('bets', bets)
+    print(type(bets))
     server = smtplib.SMTP_SSL(host='smtp.gmail.com', port=465)
     server.login(user=os.getenv('SMTP_USER'),password=os.getenv('SMTP_PASSWORD'))
 
@@ -22,7 +24,7 @@ def send(email, email_subject, headline, image, articles, rumors, bets, includeB
     
     today = date.today()
     today.strftime("%A, %B %d, %Y")
-    html = template.render(headline=headline, image=image, articles=articles, rumors=rumors, bets=bets,includeBets=includeBets, today=today)
+    html = template.render(headline=headline, image=image, articles=articles, rumors=rumors, bets=bets, includeBets=includeBets, today=today)
 
     message = MIMEMultipart("alternative")
     message["Subject"] = email_subject

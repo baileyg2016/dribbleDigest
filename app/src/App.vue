@@ -213,6 +213,7 @@ export default defineComponent({
     const isShowingTeams = ref(false);
     const isShowingLeagues = ref(false);
     const query = ref('');
+    const port = ref(2999);
 
     onMounted(() => {
       window.addEventListener('click', (e) => {
@@ -240,7 +241,8 @@ export default defineComponent({
     });
 
     async function submit() {
-      const response = await fetch('http://localhost:3000', {
+      // port.value += 1;
+      const response = await fetch(`http://localhost:3000`, {
         method: 'POST',
         headers: {
           accept: 'application/json',

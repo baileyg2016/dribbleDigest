@@ -144,6 +144,20 @@ def get_best_betting_lines(bets, favorite_sports: List[str] = ['nba', 'nfl'], fa
   # print(bets[best_bets_indices])
   return bets[best_bets_indices]
 
+
+def get_headline_data(content_list: str):
+  inputs = {
+    'content': json.dumps(content_list)
+  }
+
+  respell_resp = respell_request(
+    inputs,
+    spellId="9-IJUr8--D1qTxea5FPGy",
+    spellVersionId="kJ7c3tRv2EMgfeZ4erqu5"
+  )
+
+  return respell_resp['outputs']['output']
+
 # testing articles
 # find_best_articles()
 

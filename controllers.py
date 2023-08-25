@@ -1,6 +1,6 @@
 from typing import List
 from main import scrape_bleacher_report, get_espn_data, bleacher_report_rumor_to_article, get_betting_lines
-from machine_learning import find_best_articles, find_best_rumors, get_email_subject, get_best_betting_lines
+from machine_learning import find_best_articles, find_best_rumors, get_email_subject, get_best_betting_lines, get_headline_data
 
 def news_controller(favorite_sports: List[str], favorite_teams: List[str], return_as_dict: bool = False):
   articles = []
@@ -50,3 +50,5 @@ def top_betting_lines_controller(favorite_sports: List[str], favorite_teams: Lis
 def get_email_subject_from_articles_controller(content: List[str]):
   return get_email_subject(content)
 
+def get_headline_data_controller(content_list: List[str]):
+  return get_headline_data(content_list)

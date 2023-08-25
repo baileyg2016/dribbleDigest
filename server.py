@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from controllers import rumors_controller, news_controller, betting_lines_controller, top_five_articles_controller, top_five_rumors_controller, top_betting_lines_controller, get_email_subject_from_articles_controller
+from controllers import rumors_controller, news_controller, betting_lines_controller, top_five_articles_controller, top_five_rumors_controller, top_betting_lines_controller, get_email_subject_from_articles_controller, get_headline_data_controller
 from dataclasses import asdict
 import threading
 import json
@@ -28,8 +28,8 @@ def get_rumors():
 def get_news():
     body = request.get_json()
     bets = body.get('bets')
-    favorite_sport = body.get('favorite_sport')
-    favorite_team = body.get('favorite_team')
+    favorite_sport = body.get('favoriteLeagues')
+    favorite_team = body.get('favoriteTeams')
 
     articles = news_controller(favorite_sport, favorite_team)
     articles = [asdict(a) for a in articles]
@@ -102,15 +102,19 @@ def get_data():
         thread.join()
 
     # we don't want this as a thread because we have to wait for all of the articles
-    email_subject = get_email_subject_from_articles_controller([a['content'] for a in articles])
+    print(len(articles))
+    content = [a['content'] for a in articles[0:3]]
+    email_subject = get_email_subject_from_articles_controller(content)
+    email_headline = get_headline_data_controller(content)
 
     print('\n\n\n\n\n\n\n\n')
     print(email_subject)
+    print(email_headline)
     print(articles)
     print(rumors)
     print(bets)
 
-    digest.send(email, email_subject, "1 Trade Each NFL Team Should Propose Before the 2023 Season", "https://media.bleacherreport.com/image/upload/w_800,h_533,c_fill/v1692802630/fwh2efa0ulz2d8q5fz72.jpg", articles, rumors, bets, includeBets)
+    digest.send(email, email_subject, email_headline, articles[0]['image'], articles, rumors, bets, includeBets)
 
     return jsonify({'articles': json.dumps(articles, default=str), 'rumors': json.dumps(rumors, default=str), 'bets': json.dumps(bets, default=str), 'email_subject': email_subject})
 
