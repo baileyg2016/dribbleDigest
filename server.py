@@ -104,6 +104,7 @@ def get_data():
     # we don't want this as a thread because we have to wait for all of the articles
     print(len(articles))
     content = [a['content'] for a in articles[0:3]]
+    print(content)
     email_subject = get_email_subject_from_articles_controller(content)
     email_headline = get_headline_data_controller(content)
 

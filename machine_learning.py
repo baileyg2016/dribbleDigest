@@ -108,7 +108,7 @@ def get_email_subject(article_contents: List[str]):
   respell_resp = respell_request(
     inputs,
     spellId="-CpwV_-l3ovtyOEmPzxA_",
-    spellVersionId="9rCxjWN9R_V-fJXe-Twtz"
+    spellVersionId="v8H7e5ZGUFLSjsR3-SXBw"
   )
 
   if 'outputs' not in respell_resp:
