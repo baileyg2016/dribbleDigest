@@ -241,7 +241,14 @@ export default defineComponent({
     });
 
     async function submit() {
-
+      const response = await fetch('http://localhost:3000', {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
     }
 
     return {
