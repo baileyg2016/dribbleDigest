@@ -24,15 +24,14 @@ def extract_xml_data(xml: str):
   if match:
     content = match.group(1)
 
-
   return content
 
 def extract_array_from_string(string: str):
-  match = re.search('\[.*\]', string)
+  match = re.search(r'\[.*\]', string)
   if match:
-      json_str = match.group(0)
-      articles = json.loads(json_str.replace("'", "\""))
-      # print(articles)
+      array_string = match.group(0)
+      array = eval(array_string)
+      return array
 
 
 def respell_request(inputs, spellId: str, spellVersionId: str):
@@ -133,9 +132,13 @@ def get_best_betting_lines(bets, favorite_sports: List[str] = ['nba', 'nfl'], fa
     spellId="wWlc0jFJ8Ouf4zXsr0m7W",
     spellVersionId="KMTijEyWwnh5EhcizoRqJ"
   )
-  print(respell_resp['outputs']['output'])
+  # print(respell_resp['outputs']['output'])
+  # print(type(respell_resp['outputs']['output']))
+  string = extract_array_from_string(respell_resp['outputs']['output'])
+  print(string)
+  # print(json.loads(respell_resp['outputs']['output']))
   # print('model output', respell_resp['outputs']['output'])
-  best_bets_indices = np.array(json.loads(respell_resp['outputs']['output'].strip()), dtype=int)
+  best_bets_indices = np.array(string, dtype=int)
   # print(best_bets_indices)
   # print(bets[best_bets_indices])
   return bets[best_bets_indices]

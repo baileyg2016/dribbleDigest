@@ -60,6 +60,8 @@ def get_data():
     favorite_sport = body.get('favoriteLeagues')
     favorite_team = body.get('favoriteTeams')
 
+    favorite_sport = [s.lower() for s in favorite_sport]
+    
     # Create containers for the results
     articles = []
     rumors = []
