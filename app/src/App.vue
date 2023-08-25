@@ -1,7 +1,7 @@
 <!-- eslint-disable -->
 <template>
   <div style="display: flex; flex-direction: column; align-items: center; ">
-    <img style="width: 12rem; height: auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/icon.png" alt="Logo">
+    <img style="width: 12rem; height: auto;" src="https://raw.githubusercontent.com/baileyg2016/dribbleDigest/main/assets/digest.png" alt="Logo">
 
 
     <p class="input-label" style="padding-top: 3rem;">
