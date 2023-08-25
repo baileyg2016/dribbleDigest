@@ -110,7 +110,7 @@ export default defineComponent({
   setup() {
     const data = reactive({
       email: '',
-      includeBets: false,
+      includeBets: true,
       favoriteLeagues: [],
       favoriteTeams: [],
     });
