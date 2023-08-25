@@ -10,7 +10,7 @@ from typing import List
 from datetime import datetime
 from pytz import timezone
 
-from helpers import dict_to_article
+from helpers import dict_to_article, get_team_logo_url
 
 load_dotenv()
 
@@ -211,7 +211,10 @@ def get_betting_lines(sport: str) -> List[Bet]:
       away_team_bets_percentage = r.find_all('span', class_='highlight-text__children')[0].text
       home_team_bets_percentage = r.find_all('span', class_='highlight-text__children')[1].text
 
-    b = Bet(home_team, away_team, game_date, away_open, home_open, best_odds, away_team_bet_odds, home_team_bet_odds, away_team_bets_percentage, home_team_bets_percentage)
+    away_team_image_url = get_team_logo_url(away_team)
+    home_team_image_url = get_team_logo_url(home_team)
+
+    b = Bet(home_team, away_team, game_date, away_open, home_open, best_odds, away_team_bet_odds, home_team_bet_odds, away_team_bets_percentage, home_team_bets_percentage, away_team_image_url, home_team_image_url)
     bets.append(b)
   
   return bets
