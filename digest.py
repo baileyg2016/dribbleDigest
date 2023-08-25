@@ -16,7 +16,7 @@ def send_digest(email):
   <body>
     <p>Hi,<br>
        How are you?<br>
-       <a href="http://www.realpython.com">Real Python</a> 
+       <a style="color: red" href="http://www.realpython.com">Real Python</a> 
        has many great tutorials.
     </p>
   </body>
