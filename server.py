@@ -40,9 +40,9 @@ def get_news():
 @app.route('/bets', methods=['GET'])
 def get_bets():
     body = request.get_json()
-    bets = body.get('bets')
-    favorite_sport = body.get('favorite_sport')
-    favorite_team = body.get('favorite_team')
+    bets = body.get('includeBets')
+    favorite_sport = body.get('favoriteSports')
+    favorite_team = body.get('favoriteTeams')
 
     bets = betting_lines_controller(favorite_sport, favorite_team)
 

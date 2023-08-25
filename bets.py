@@ -13,6 +13,8 @@ class Bet:
   home_team_bets_odds: float
   away_team_bets_percentage: float
   home_team_bets_percentage: float
+  away_team_image_url: str
+  home_team_image_url: str
   
   def __str__(self):
     return f'Home Team: {self.home_team}\nAway Team: {self.away_team}\nGame Date: {self.game_date}\nAway Open: {self.away_open}\nHome Open: {self.home_open}\nBest Odds: {self.best_odds}\nAway Team Bets Odds: {self.away_team_bets_odds}\nHome Team Bets Odds: {self.home_team_bets_odds}\nAway Team Bets Percentage: {self.away_team_bets_percentage}\nHome Team Bets Percentage: {self.home_team_bets_percentage}\n'
