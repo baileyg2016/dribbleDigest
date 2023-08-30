@@ -27,8 +27,10 @@ def betting_lines_controller(favorite_sports: List[str], favorite_teams: List[st
   bets = []
 
   for sport in favorite_sports:
+    print('getting betting lines for', sport)
     bets.extend(get_betting_lines(sport))
-
+  print('------------')
+  print(bets)
   if return_as_dict:
     return [bet.to_dict() for bet in bets]
   

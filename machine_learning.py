@@ -57,7 +57,7 @@ def respell_request(inputs, spellId: str, spellVersionId: str):
 
 def find_best_articles(articles, favorite_sports: List[str] = ['nba', 'nfl'], favorite_teams: List[str] = ['Warriors', '49ers']):
   articles = np.array(articles)
-
+  np.random.shuffle(articles)
   inputs = {
     "favorite_sports": json.dumps(favorite_sports),
     "favorite_teams": json.dumps(favorite_teams),
@@ -68,7 +68,9 @@ def find_best_articles(articles, favorite_sports: List[str] = ['nba', 'nfl'], fa
   respell_resp = respell_request(
     inputs,
     spellId="1Lkc-tCYn5KSd97eGrlhZ",
-    spellVersionId="c-TTfTxVgzSSwm8x9Bo9A"
+    # spellVersionId="c-TTfTxVgzSSwm8x9Bo9A"
+    # spellVersionId="otDQEb5pqmrKAfHqHVrmf"
+    spellVersionId="_hwgC0H6gaQx0RjCh2ygf"
   )
 
   if 'outputs' not in respell_resp:
@@ -84,7 +86,7 @@ def find_best_articles(articles, favorite_sports: List[str] = ['nba', 'nfl'], fa
   
 def find_best_rumors(rumors, favorite_sports: List[str] = ['nba', 'nfl'], favorite_teams: List[str] = ['Warriors', '49ers']):
   rumors = np.array(rumors)
-
+  np.random.shuffle(rumors)
   inputs = {
     "favorite_sports": json.dumps(favorite_sports),
     "favorite_teams": json.dumps(favorite_teams),
@@ -130,7 +132,8 @@ def get_best_betting_lines(bets, favorite_sports: List[str] = ['nba', 'nfl'], fa
   respell_resp = respell_request(
     inputs,
     spellId="wWlc0jFJ8Ouf4zXsr0m7W",
-    spellVersionId="KMTijEyWwnh5EhcizoRqJ"
+    # spellVersionId="KMTijEyWwnh5EhcizoRqJ"
+    spellVersionId="Cl8KDNMMNNrP2FrJi2STK"
   )
   # print(respell_resp['outputs']['output'])
   # print(type(respell_resp['outputs']['output']))
